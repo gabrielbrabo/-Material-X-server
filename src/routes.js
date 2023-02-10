@@ -3,6 +3,7 @@ const SessionsController = require ("./controllers/SessionsController")
 const auth = require ("./middlewares/auth")
 const multer = require('multer')
 const multerConfig = require('./config/multer')
+const PostFile = require("./models/PostFiles");
 
 const express = require('express')
 const routes = express.Router()
@@ -12,10 +13,17 @@ routes.post('/sessions', SessionsController.create)
 
 routes.use(auth)
 
-routes.post('/post', multer(multerConfig).single("file"), (req, res) => {
-    console.log(req.file)
-    
-    return res.json ({hello: "Gabriel"})
+routes.post('/post', multer(multerConfig).single("file"),  async (req, res) => {
+    const { originalname: name, size, key, location: url = "" } = req.file;
+
+    const post = await PostFile.create({
+        name,
+        size,
+        key,
+        url: '',
+    });
+
+    return res.json(post);
 })
 
 
