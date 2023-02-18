@@ -4,8 +4,6 @@ const crypto = require("crypto");
 const aws = require("aws-sdk");
 const multerS3 = require("multer-s3");
 
-//const GOOGLE_API_FOLDER-ID = '1VFmGYXxJeACE0GMl6mjwMaNH6Fm8bZmc'
-
 const storageTypes = {
     local: multer.diskStorage({ 
         destination: (req, file, cb) => {

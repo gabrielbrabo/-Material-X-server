@@ -2,7 +2,7 @@ const UsersController = require( "./controllers/UsersController")
 const SessionsController = require ("./controllers/SessionsController")
 const auth = require ("./middlewares/auth")
 const multer = require('multer')
-const multerConfig = require('./config/multer')
+const multerConfig = require('./middlewares/multer')
 const PostFile = require("./models/PostFiles");
 
 const express = require('express')
